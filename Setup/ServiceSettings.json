@@ -1,0 +1,46 @@
+{
+  "ConnectionStrings": [
+    {
+      "name": "ocr",
+      "connection": "server=.\\SQL2017;database=OCR59_Particular;user=orbium;password=ocr.1010;"
+    }
+  ],
+  "Bindings": [
+    {
+      "name": "BlipImport",
+      "connectrionStringName": "ocr",
+      "sleepInterval": 30000
+    }
+  ],
+  "Logging": {
+    "NLog": {
+      "IncludeScopes": false,
+      "ParseMessageTemplates": true,
+      "CaptureMessageProperties": true
+    }
+  },
+  "NLog": {
+    "autoreload": true,
+    "variables": {
+      "logDirectory": "${basedir}/logs/${shortdate}"
+    },
+    "targets": {
+      "coloredConsole": {
+        "type": "ColoredConsole",
+        "layout": "[${time}][${level:uppercase=true}] ${message} ${exception}"
+      },
+      "service": {
+        "type": "File",
+        "fileName": "${logDirectory}/ServiceIntegration.log",
+        "layout": "[${time}][${level:uppercase=true}] ${message} ${exception}"
+      }
+    },
+    "rules": [
+      {
+        "logger": "ServiceIntegration",
+        "minLevel": "Debug",
+        "writeTo": "service"
+      }
+    ]
+  }
+}

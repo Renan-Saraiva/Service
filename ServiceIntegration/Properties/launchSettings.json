@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DigitalMediaIntegration": {
+      "commandName": "Project",
+      "workingDirectory": "bin\\Debug\\"
+    }
+  }
+}
